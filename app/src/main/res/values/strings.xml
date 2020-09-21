@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dialogs</string>
+    <string name="alert_dialog_title">BitCode Technologies</string>
+    <string name="alert_dialog_message">Are you sure, you want to reject job at Google?</string>
+    <string name="alert_dialog_positive_button_text">Reject Job</string>
+    <string name="alert_dialog_negative_button_text">I will work!</string>
+    <string name="alert_dialog_neutral_button_text">I don\'t know</string>
+</resources>
