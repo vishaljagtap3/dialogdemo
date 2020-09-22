@@ -3,10 +3,14 @@ package in.bitcode.dialogs;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,8 +26,55 @@ public class MainActivity extends AppCompatActivity {
         init();
 
         mBtnAlertDialog.setOnClickListener(new BtnAlertDialogClickListener());
+        mBtnDatePickerDialog.setOnClickListener( new BtnDatePickerDialogClickListener() );
+        mBtnTimePickerDialog.setOnClickListener( new BtnTimePickerDialogClickListener() );
 
+    }
 
+    private class BtnTimePickerDialogClickListener implements  View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+            TimePickerDialog birthTimePickerDialog = new TimePickerDialog(
+              MainActivity.this,
+              new BirthTimeSetListener(),
+              20,
+              45,
+              false
+            );
+            birthTimePickerDialog.show();
+
+        }
+    }
+
+    private class BirthTimeSetListener implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public void onTimeSet(TimePicker timePicker, int hours, int mins) {
+            mBtnTimePickerDialog.setText( hours + " : " + mins );
+        }
+    }
+
+    private class BtnDatePickerDialogClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+            DatePickerDialog dobPickerDialog =
+                    new DatePickerDialog(
+                            MainActivity.this,
+                            new DOBPickUpListener(),
+                            2000,
+                            8,
+                            21
+                    );
+            dobPickerDialog.show();
+        }
+    }
+
+    private class DOBPickUpListener implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+            mBtnDatePickerDialog.setText( dayOfMonth + "-" + (month+1) + "-"+year);
+        }
     }
 
     private class BtnAlertDialogClickListener implements View.OnClickListener {
